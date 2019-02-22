@@ -1,0 +1,139 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Drum Kit</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="animation-container">
+            <img class="cat-1" id="image" alt="bongo-cat" src="css/cat-1.png">
+        </div>
+        <div class="keys">
+            <div data-key="65" class="key">
+                <kbd>A</kbd>
+                <span class="sound">clap</span>
+            </div>
+            <div data-key="83" class="key">
+                <kbd>S</kbd>
+                <span class="sound">hihat</span>
+            </div>
+            <div data-key="68" class="key">
+                <kbd>D</kbd>
+                <span class="sound">kick</span>
+            </div>
+            <div data-key="70" class="key">
+                <kbd>F</kbd>
+                <span class="sound">openhat</span>
+            </div>
+            <div data-key="71" class="key">
+                <kbd>G</kbd>
+                <span class="sound">boom</span>
+            </div>
+            <div data-key="72" class="key">
+                <kbd>H</kbd>
+                <span class="sound">ride</span>
+            </div>
+            <div data-key="74" class="key">
+                <kbd>J</kbd>
+                <span class="sound">snare</span> <!-- werbel -->
+            </div>
+            <div data-key="75" class="key">
+                <kbd>K</kbd>
+                <span class="sound">tom</span>
+            </div>
+            <div data-key="76" class="key">
+                <kbd>L</kbd>
+                <span class="sound">tink</span>
+            </div>
+        </div>
+    </div>
+
+    <audio data-key="65" src="sounds/clap.wav"></audio>
+    <audio data-key="83" src="sounds/hihat.wav"></audio>
+    <audio data-key="68" src="sounds/kick.wav"></audio>
+    <audio data-key="70" src="sounds/openhat.wav"></audio>
+    <audio data-key="71" src="sounds/boom.wav"></audio>
+    <audio data-key="72" src="sounds/ride.wav"></audio>
+    <audio data-key="74" src="sounds/snare.wav"></audio>
+    <audio data-key="75" src="sounds/tom.wav"></audio>
+    <audio data-key="76" src="sounds/tink.wav"></audio>
+
+    <script>
+        function removeTransition(e) {
+            if (e.propertyName !== 'transform') return;
+            e.target.classList.remove('playing');
+        }
+
+        function playSound(e) {
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+            if (!audio) return;
+
+            key.classList.add('playing');
+            audio.currentTime = 0;
+            audio.play();
+        }
+
+        const keys = Array.from(document.querySelectorAll('.key'));
+        keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+        window.addEventListener('keydown', playSound);
+
+
+        window.addEventListener('keydown', function (e) {
+            const audio_2 = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            
+            console.log(audio_2);
+
+            const sound_1 = !document.querySelector(audio[data - key= "65"]).paused;
+            const sound_2 = document.querySelector(`audio[data-key="83"]`);
+            const sound_3 = document.querySelector(`audio[data-key="68"]`);
+            const sound_4 = document.querySelector(`audio[data-key="70"]`);
+            const sound_5 = document.querySelector(`audio[data-key="71"]`);
+            const sound_6 = document.querySelector(`audio[data-key="72"]`);
+            const sound_7 = document.querySelector(`audio[data-key="74"]`);
+            const sound_8 = document.querySelector(`audio[data-key="75"]`);
+            const sound_9 = document.querySelector(`audio[data-key="76"]`);
+
+            console.log();
+
+            /*const sound_arr_1 = [sound_1];
+            const sound_arr_2 = [sound_2, sound_4];
+            const sound_arr_3 = [sound_3, sound_5];
+            const sound_arr_4 = [sound_6, sound_7, sound_8, sound_9];
+            */
+            
+            const sound_arr_1 = sound_1;
+            const sound_arr_2 = sound_2 || sound_4;
+            const sound_arr_3 = sound_3 || sound_5;
+            const sound_arr_4 = sound_6 || sound_7 || sound_8 || sound_9;
+           
+                
+            if (sound_arr_1) {
+                console.log("if 1");
+                document.getElementById("image").src = "css/cat-5.png";
+                setTimeout(`document.getElementById("image").src = "css/cat-1.png";`, 100);
+            } else if (sound_arr_2) {
+                console.log("if 2");
+                document.getElementById("image").src = "css/cat-3.png";
+                setTimeout(`document.getElementById("image").src = "css/cat-1.png";`, 100);
+            } else if (sound_arr_3) {
+                console.log("if 3");
+                document.getElementById("image").src = "css/cat-4.png";
+                setTimeout(`document.getElementById("image").src = "css/cat-1.png";`, 100);
+            } else if (sound_arr_4) {
+                console.log("if 4");
+                document.getElementById("image").src = "css/cat-2.png";
+                setTimeout(`document.getElementById("image").src = "css/cat-1.png";`, 100);
+            } else {
+                console.log("else")
+                document.getElementById("image").src = "css/cat-1.png";
+            }
+
+            
+            
+
+        });
+    </script>
+</body>
+</html>
